@@ -3,6 +3,6 @@ Cocoa.sln
 Cocoa/Cocoa.vcxproj
 Cocoa/Cocoa.vcxproj.filters
 Cocoa/Cocoa.vcxproj.user
-Sandbox/
+Sandbox/*.*
 bin-int/
 bin/
