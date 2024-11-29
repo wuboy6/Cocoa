@@ -1,0 +1,12 @@
+[submodule "Cocoa/vendor/spdlog"]
+	path = Cocoa/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Cocoa/vendor/GLFW"]
+	path = Cocoa/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
+[submodule "Cocoa/vendor/imgui"]
+	path = Cocoa/vendor/imgui
+	url = https://github.com/TheCherno/imgui
+[submodule "Cocoa/vendor/glm"]
+	path = Cocoa/vendor/glm
+	url = https://github.com/icaven/glm.git
