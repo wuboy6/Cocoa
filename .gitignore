@@ -1,0 +1,8 @@
+.vs/
+Cocoa.sln
+Cocoa/Cocoa.vcxproj
+Cocoa/Cocoa.vcxproj.filters
+Cocoa/Cocoa.vcxproj.user
+Sandbox/
+bin-int/
+bin/
