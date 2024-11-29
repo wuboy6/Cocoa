@@ -1,5 +1,6 @@
 workspace "Cocoa"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -62,7 +63,6 @@ project "Cocoa"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "off"
 		systemversion "latest"
 
 		defines
@@ -111,6 +111,7 @@ project "Sandbox"
 	{
 		"Cocoa/vendor/spdlog/include",
 		"Cocoa/src",
+		"Cocoa/vendor",
 		"%{IncludeDir.glm}"
 	}
 	

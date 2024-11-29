@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "Cocoa/Events/ApplicationEvent.h"
+#include "Cocoa/Log.h"
 
 #include <glad/glad.h>
 
@@ -19,11 +20,11 @@ namespace Cocoa {
 		CO_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create({"coco"}));
+		m_Window = std::unique_ptr<Window>(Window::Create({ "coco" }));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
-		//unsigned int id;
-		//glGenVertexArrays(1,&id);
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 	Application::~Application()
 	{
@@ -38,6 +39,12 @@ namespace Cocoa {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
+
 
 			m_Window->OnUpdate();
 		}

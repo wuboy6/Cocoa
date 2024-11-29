@@ -1,5 +1,6 @@
 #include <Cocoa.h>
 
+
 class ExampleLayer : public Cocoa::Layer
 {
 public:
@@ -13,6 +14,7 @@ public:
 		if (Cocoa::Input::IsKeyPressed(CO_KEY_TAB))
 			CO_TRACE("Tab key is pressed!");
 	}
+
 
 	void OnEvent(Cocoa::Event& event) override
 	{
@@ -30,12 +32,11 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Cocoa::ImGuiLayer());
 	}
 
 	~Sandbox()
 	{
-		
+
 	}
 
 
