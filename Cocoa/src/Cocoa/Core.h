@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef CO_PLATEFORM_WINDOWS
+#if CO_DYNAMIC_LINK
 	#ifdef CO_BUILD_DLL 
 		#define COCOA_API __declspec(dllexport)
 	#else
 		#define COCOA_API __declspec(dllimport)
 	#endif
+#else
+	#define COCOA_API
+#endif
 #else 
 	#error Cocoa only suport Windodws
 #endif

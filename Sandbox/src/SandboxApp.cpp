@@ -1,4 +1,5 @@
 #include <Cocoa.h>
+#include "imgui/imgui.h"
 
 
 class ExampleLayer : public Cocoa::Layer
@@ -15,6 +16,14 @@ public:
 			CO_TRACE("Tab key is pressed!");
 	}
 
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Text");
+		ImGui::Text("Hello");
+		ImGui::End();
+
+	}
 
 	void OnEvent(Cocoa::Event& event) override
 	{
