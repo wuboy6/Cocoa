@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Cocoa/Window.h"
+#include "Cocoa/Renderer/GraphicsContext.h"
 
 #include "GLFW/glfw3.h"
 
@@ -31,6 +32,7 @@ namespace Cocoa {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
