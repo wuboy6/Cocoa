@@ -7,8 +7,6 @@
 
 namespace Cocoa {
 
-
-
 	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)
 		:m_WindowHandle(windowHandle)
 	{
