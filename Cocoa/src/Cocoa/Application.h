@@ -9,14 +9,8 @@
 
 #include "ImGui/ImGuiLayer.h"
 
-#include "Cocoa/Renderer/Shader.h"
-#include "Cocoa//Renderer/Buffer.h"
-#include "Cocoa//Renderer/VertexArray.h"
-
-#include "Cocoa/Renderer/OrthoGraphicCamera.h"
-
 namespace Cocoa {
-	class COCOA_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -39,14 +33,6 @@ namespace Cocoa {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-		
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	private:
 
 		static Application* s_Instance;
