@@ -9,8 +9,8 @@ namespace Cocoa {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: CO_CORE_ASSERT(false, "RendererAPI::None is not currently supported!") return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexArray();
+		case RendererAPI::API::None: CO_CORE_ASSERT(false, "RendererAPI::None is not currently supported!") return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
 		}
 
 		CO_CORE_ASSERT(false, "Unknown RendererAPI!");

@@ -10,8 +10,8 @@ namespace Cocoa {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: CO_CORE_ASSERT(false,"RendererAPI::None is not currently supported!") return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::API::None : CO_CORE_ASSERT(false, "RendererAPI::None is not currently supported!") return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		CO_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -22,8 +22,8 @@ namespace Cocoa {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: CO_CORE_ASSERT(false, "RendererAPI::None is not currently supported!") return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, count);
+		case RendererAPI::API::None: CO_CORE_ASSERT(false, "RendererAPI::None is not currently supported!") return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, count);
 		}
 
 		CO_CORE_ASSERT(false, "Unknown RendererAPI!");
