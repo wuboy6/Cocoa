@@ -13,6 +13,8 @@
 #include "Cocoa//Renderer/Buffer.h"
 #include "Cocoa//Renderer/VertexArray.h"
 
+#include "Cocoa/Renderer/OrthoGraphicCamera.h"
+
 namespace Cocoa {
 	class COCOA_API Application
 	{
@@ -43,6 +45,8 @@ namespace Cocoa {
 
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	private:
 
 		static Application* s_Instance;
