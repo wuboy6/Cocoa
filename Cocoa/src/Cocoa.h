@@ -7,6 +7,8 @@
 #include "Cocoa/Layer.h"
 #include "Cocoa/Log.h"
 
+#include "Cocoa/Core/Timestep.h"
+
 #include "Cocoa/Input.h"
 #include "Cocoa/KeyCodes.h"
 #include "Cocoa/MouseButtonCodes.h"
