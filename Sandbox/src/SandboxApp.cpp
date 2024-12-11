@@ -26,7 +26,7 @@ public:
 			 0.0f,  0.5f, 0.0f,0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Cocoa::VertexBuffer> vertexBuffer;
+		Cocoa::Ref<Cocoa::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Cocoa::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Cocoa::BufferLayout layout = {
@@ -40,7 +40,7 @@ public:
 		//Index Buffer
 
 		unsigned int indices[3] = { 0 , 1 , 2 };
-		std::shared_ptr<Cocoa::IndexBuffer> indexBuffer;
+		Cocoa::Ref<Cocoa::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Cocoa::IndexBuffer::Create(indices, 3));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -53,7 +53,7 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<Cocoa::VertexBuffer> squareVB;
+		Cocoa::Ref<Cocoa::VertexBuffer> squareVB;
 		squareVB.reset(Cocoa::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{Cocoa::ShaderDataType::Float3, "A_position"}
@@ -61,7 +61,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		unsigned int squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Cocoa::IndexBuffer> squareIB;
+		Cocoa::Ref<Cocoa::IndexBuffer> squareIB;
 		squareIB.reset(Cocoa::IndexBuffer::Create(squareIndices, 6));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -215,11 +215,11 @@ public:
 	//	return false;
 	//}
 private:
-	std::shared_ptr<Cocoa::Shader> m_Shader;
-	std::shared_ptr<Cocoa::VertexArray> m_VertexArray;
+	Cocoa::Ref<Cocoa::Shader> m_Shader;
+	Cocoa::Ref<Cocoa::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Cocoa::Shader> m_FlatColorShader;
-	std::shared_ptr<Cocoa::VertexArray> m_SquareVA;
+	Cocoa::Ref<Cocoa::Shader> m_FlatColorShader;
+	Cocoa::Ref<Cocoa::VertexArray> m_SquareVA;
 
 	Cocoa::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

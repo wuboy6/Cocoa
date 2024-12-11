@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef CO_PLATEFORM_WINDOWS
 #if CO_DYNAMIC_LINK
 	#ifdef CO_BUILD_DLL 
@@ -30,3 +32,12 @@
 #define BIT(x) (1 << x)
 
 #define CO_BIND_EVENT_FN(fn) std::bind(&fn,this,std::placeholders::_1)
+
+namespace Cocoa {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+}
