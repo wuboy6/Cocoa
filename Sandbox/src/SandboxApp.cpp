@@ -172,7 +172,8 @@ public:
 
 		m_TextureShader.reset(Cocoa::Shader::Create(textureShadervertexSrc, textureShaderfragmentSrc));
 
-		m_Texture = Cocoa::Texture2D::Create("assets/textures/naxigui.jpg");
+		m_Texture = Cocoa::Texture2D::Create("assets/textures/cake.jpg");
+		m_ChernoLogoTexture = Cocoa::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<Cocoa::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Cocoa::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -221,6 +222,9 @@ public:
 		}
 
 		m_Texture->Bind();
+		Cocoa::Renderer::Submit(m_TextureShader, m_SquareVA,  glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		m_ChernoLogoTexture->Bind();
 		Cocoa::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
@@ -240,26 +244,7 @@ public:
 
 	void OnEvent(Cocoa::Event& event) override
 	{
-		/*Cocoa::EventDispatcher dispacher(event);
-		dispacher.Dispatch<Cocoa::KeyPressedEvent>(CO_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));*/
 	}
-
-	//bool OnKeyPressedEvent(Cocoa::KeyPressedEvent& event)
-	//{
-	//	/*if (event.GetKeyCode() == CO_KEY_LEFT)
-	//		m_CameraPosition.x -= m_CameraMoveSpeed;
-
-	//	if (event.GetKeyCode() == CO_KEY_RIGHT)
-	//		m_CameraPosition.x += m_CameraMoveSpeed;
-
-	//	if (event.GetKeyCode() == CO_KEY_DOWN)
-	//		m_CameraPosition.y -= m_CameraMoveSpeed;
-
-	//	if (event.GetKeyCode() == CO_KEY_UP)
-	//		m_CameraPosition.y += m_CameraMoveSpeed;*/
-
-	//	return false;
-	//}
 private:
 	Cocoa::Ref<Cocoa::Shader> m_Shader;
 	Cocoa::Ref<Cocoa::VertexArray> m_VertexArray;
@@ -267,7 +252,7 @@ private:
 	Cocoa::Ref<Cocoa::Shader> m_FlatColorShader, m_TextureShader;
 	Cocoa::Ref<Cocoa::VertexArray> m_SquareVA;
 
-	Cocoa::Ref<Cocoa::Texture> m_Texture;
+	Cocoa::Ref<Cocoa::Texture> m_Texture, m_ChernoLogoTexture;
 
 	Cocoa::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
