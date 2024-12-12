@@ -46,17 +46,18 @@ public:
 
 		m_SquareVA.reset(Cocoa::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		Cocoa::Ref<Cocoa::VertexBuffer> squareVB;
 		squareVB.reset(Cocoa::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{Cocoa::ShaderDataType::Float3, "A_position"}
+			{Cocoa::ShaderDataType::Float3, "A_Position"},
+			{Cocoa::ShaderDataType::Float2, "A_TexCoord"}
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
@@ -135,6 +136,47 @@ public:
 		)";
 
 		m_FlatColorShader.reset(Cocoa::Shader::Create(flatColorShadervertexSrc, flatColorShaderfragmentSrc));
+
+		std::string textureShadervertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+			
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position =u_ViewProjection * u_Transform * vec4(a_Position , 1.0);
+			}
+		)";
+
+		std::string textureShaderfragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+			
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Cocoa::Shader::Create(textureShadervertexSrc, textureShaderfragmentSrc));
+
+		m_Texture = Cocoa::Texture2D::Create("assets/textures/naxigui.jpg");
+
+		std::dynamic_pointer_cast<Cocoa::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Cocoa::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
 	}
 
 	void OnUpdate(Cocoa::Timestep ts) override
@@ -178,7 +220,11 @@ public:
 			}
 		}
 
-		Cocoa::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Cocoa::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		// Triangle
+		// Cocoa::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Cocoa::Renderer::EndScene();
 
@@ -218,8 +264,10 @@ private:
 	Cocoa::Ref<Cocoa::Shader> m_Shader;
 	Cocoa::Ref<Cocoa::VertexArray> m_VertexArray;
 
-	Cocoa::Ref<Cocoa::Shader> m_FlatColorShader;
+	Cocoa::Ref<Cocoa::Shader> m_FlatColorShader, m_TextureShader;
 	Cocoa::Ref<Cocoa::VertexArray> m_SquareVA;
+
+	Cocoa::Ref<Cocoa::Texture> m_Texture;
 
 	Cocoa::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

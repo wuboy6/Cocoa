@@ -21,6 +21,7 @@
 
 #include "Cocoa/Renderer/Buffer.h"
 #include "Cocoa/Renderer/Shader.h"
+#include "Cocoa/Renderer/Texture.h"
 #include "Cocoa/Renderer/VertexArray.h"
 
 #include "Cocoa/Renderer/OrthographicCamera.h"

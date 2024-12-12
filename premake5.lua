@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Cocoa/vendor/GLFW/include"
 IncludeDir["Glad"] = "Cocoa/vendor/Glad/include"
 IncludeDir["Imgui"] = "Cocoa/vendor/imgui"
 IncludeDir["glm"] = "Cocoa/vendor/glm"
+IncludeDir["stb_image"] = "Cocoa/vendor/stb_image"
 
 include "Cocoa/vendor/GLFW"
 include "Cocoa/vendor/Glad"
@@ -39,6 +40,8 @@ project "Cocoa"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -55,7 +58,8 @@ project "Cocoa"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.Imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links
