@@ -12,6 +12,7 @@
 #include "Cocoa/Input.h"
 #include "Cocoa/KeyCodes.h"
 #include "Cocoa/MouseButtonCodes.h"
+#include "Cocoa/OrthographicCameraController.h"
 
 #include "Cocoa/ImGui/ImGuiLayer.h"
 
